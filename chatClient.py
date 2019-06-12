@@ -9,10 +9,12 @@ running = False
 def inputLoop(sock):
     global running
     while running:
-        toNameOrList = input('Digite para quem enviar, escreva #lista para ver a lista de usuários ou #sair para fechar o cliente: \n')
+        toNameOrList = input('Digite para quem enviar, ou escreva #lista para ver a lista de usuários ou #sair para fechar o cliente: \n')
+        print(toNameOrList)
+        print(toNameOrList.startswith('#lista'))
         if toNameOrList.startswith('#lista'):
             sock.sendall(("list:").encode())
-        if toNameOrList.startswith('#sair'):
+        elif toNameOrList.startswith('#sair'):
             running = False
         else:
             read = input('Digite a mensagem para enviar: \n')
